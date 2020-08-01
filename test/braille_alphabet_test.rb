@@ -49,4 +49,9 @@ class BrailleAlphabetTest < Minitest::Test
     }
     assert_equal expected, @braille_alphabet.alphabet
   end
+
+  def test_it_can_translate
+    assert_equal [['0.','..','..']],
+    @braille_alphabet.translate("a")
+  end
 end
