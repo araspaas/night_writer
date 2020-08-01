@@ -60,4 +60,13 @@ class BrailleAlphabetTest < Minitest::Test
     assert_equal expected,
     @braille_alphabet.translate("austin")
   end
+
+  def test_it_returns_in_grid_form
+    skip
+    @braille_alphabet.translate("austin")
+    expected = [['0.','..','..'], ['0.','..','00'], ['.0','0.','0.'],
+    ['.0','00','0.'], ['.0','0.','..'], ['00','.0','0.']]
+    assert_equal j,
+    @braille_alphabet.grid_format(expected)
+  end
 end
