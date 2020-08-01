@@ -40,4 +40,11 @@ class BrailleAlphabet
       '#' => ['.0','.0','00']
     }
   end
+
+  def translate(letter)
+    letters = letter.chars
+    letters.map do |letter|
+      @alphabet[letter]
+    end
+  end
 end
