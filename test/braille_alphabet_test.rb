@@ -60,8 +60,4 @@ class BrailleAlphabetTest < Minitest::Test
     assert_equal expected,
     @braille_alphabet.translate("austin")
   end
-
-  def test_
-
-  end
 end
