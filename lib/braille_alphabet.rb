@@ -1,5 +1,8 @@
 class BrailleAlphabet
-  attr_reader :alphabet
+  attr_reader :alphabet,
+              :line1,
+              :line2,
+              :line3
 
   def initialize
     @alphabet = @alpha_to_braille =
@@ -39,6 +42,9 @@ class BrailleAlphabet
       " " => ['..','..','..'],
       '#' => ['.0','.0','00']
     }
+    @line1 = []
+    @line2 = []
+    @line3 = []
   end
 
   def translate(letter)
@@ -47,4 +53,19 @@ class BrailleAlphabet
       @alphabet[letter]
     end
   end
+
+  def grid_format(arrays)
+    arrays.map do |array|
+      @line1 << array[0]
+      @line2 << array[1]
+      @line3 << array[2]
+    end
+  end
 end
+
+braille_alphabet = BrailleAlphabet.new
+
+puts braille_alphabet.translate("austin")
+puts braille_alphabet.line1
+puts braille_alphabet.line2
+puts braille_alphabet.line3
