@@ -8,7 +8,8 @@ class Encrypt
               :line1,
               :line2,
               :line3,
-              :night_writer
+              :night_writer,
+              :all_lines
 
   def initialize
     @alphabet = AlphabetHash.alphabet_hash
@@ -26,10 +27,19 @@ class Encrypt
   end
 
   def grid_format(arrays)
-    arrays.map do |array|
+    x = arrays.map do |array|
       @line1 << array[0]
       @line2 << array[1]
       @line3 << array[2]
     end
+    format_lines
+  end
+
+  def format_lines
+    line_1_as_string = line1.join('')
+    line_2_as_string = line2.join('')
+    line_3_as_string = line3.join('')
+    @all_lines = [line_1_as_string, line_2_as_string, line_3_as_string]
+    all_lines.join("\n")
   end
 end
