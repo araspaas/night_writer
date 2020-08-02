@@ -50,12 +50,16 @@ class EncryptTest < Minitest::Test
     assert_equal expected, @encrypt.alphabet
   end
 
+  def test_it_can_encrypt_file
+    @encrypt.translate("austin")
+    assert_equal [], @encrypt.encrypt_file
+  end
+
   def test_it_can_translate
-    assert_equal [['0.','..','..']],
+    assert_equal "0.\n..\n..",
     @encrypt.translate("a")
 
-    expected = [['0.','..','..'], ['0.','..','00'], ['.0','0.','0.'],
-    ['.0','00','0.'], ['.0','0.','..'], ['00','.0','0.']]
+    expected = "0.0.0..0.0.000\n......0.000..0\n....000.0...0."
 
     assert_equal expected,
     @encrypt.translate("austin")
