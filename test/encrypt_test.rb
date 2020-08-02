@@ -62,11 +62,10 @@ class EncryptTest < Minitest::Test
   end
 
   def test_it_returns_in_grid_form
-    skip
-    @encrypt.translate("austin")
-    expected = [['0.','..','..'], ['0.','..','00'], ['.0','0.','0.'],
+    array = [['0.','..','..'], ['0.','..','00'], ['.0','0.','0.'],
     ['.0','00','0.'], ['.0','0.','..'], ['00','.0','0.']]
-    assert_equal j,
-    @encrypt.grid_format(expected)
+
+    assert_equal "0.0..0.0.000\n....0.000..0\n..000.0...0.",
+    @encrypt.grid_format(array)
   end
 end
