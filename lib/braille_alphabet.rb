@@ -62,10 +62,3 @@ class BrailleAlphabet
     end
   end
 end
-
-braille_alphabet = BrailleAlphabet.new
-
-puts braille_alphabet.translate("austin")
-puts braille_alphabet.line1
-puts braille_alphabet.line2
-puts braille_alphabet.line3
