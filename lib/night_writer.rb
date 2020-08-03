@@ -1,19 +1,4 @@
-file = File.open(ARGV[0],"r")
-
-incoming_text = file.read
-
-file.close
-
-translated_text = incoming_text.upcase
-
-writer = File.open(ARGV[1],"w")
-
-writer.write(translated_text)
-
-writer.close
-
-read_new = File.open(ARGV[1],"r")
-
-number_of_characters = read_new.read.length - 1
-
-puts "Created '#{ARGV[1]}' containing #{number_of_characters} characters"
+require_relative 'file_input_output'
+require_relative 'encrypt'
+night_writer = Encrypt.new
+night_writer.encrypt_file

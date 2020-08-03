@@ -1,17 +1,17 @@
 require './test/test_helper'
-require './lib/braille_alphabet'
+require './lib/encrypt'
 
-class BrailleAlphabetTest < Minitest::Test
+class EncryptTest < Minitest::Test
   def setup
-    @braille_alphabet = BrailleAlphabet.new
+    @encrypt = Encrypt.new
   end
 
   def test_it_exists
-    assert_instance_of BrailleAlphabet, @braille_alphabet
+    assert_instance_of Encrypt, @encrypt
   end
 
   def test_it_has_the_braille_alphabet
-    expected = @alpha_to_braille = { "a" => ['0.','..','..'],
+    expected = { "a" => ['0.','..','..'],
       "b" => ['0.','0.','..'],
       "c" => ['00','..','..'],
       "d" => ['00','.0','..'],
@@ -47,26 +47,35 @@ class BrailleAlphabetTest < Minitest::Test
       " " => ['..','..','..'],
       '#' => ['.0','.0','00']
     }
-    assert_equal expected, @braille_alphabet.alphabet
+    assert_equal expected, @encrypt.alphabet
+  end
+
+  def test_it_can_encrypt_file
+    skip
+    assert_equal [], @encrypt.encrypt_file
   end
 
   def test_it_can_translate
-    assert_equal [['0.','..','..']],
-    @braille_alphabet.translate("a")
+    assert_equal "0.\n..\n..",
+    @encrypt.translate("a")
 
-    expected = [['0.','..','..'], ['0.','..','00'], ['.0','0.','0.'],
-    ['.0','00','0.'], ['.0','0.','..'], ['00','.0','0.']]
+    expected = "0.0.0..0.0.000\n......0.000..0\n....000.0...0."
 
     assert_equal expected,
-    @braille_alphabet.translate("austin")
+    @encrypt.translate("austin")
   end
 
   def test_it_returns_in_grid_form
-    skip
-    @braille_alphabet.translate("austin")
-    expected = [['0.','..','..'], ['0.','..','00'], ['.0','0.','0.'],
+    array = [['0.','..','..'], ['0.','..','00'], ['.0','0.','0.'],
     ['.0','00','0.'], ['.0','0.','..'], ['00','.0','0.']]
-    assert_equal j,
-    @braille_alphabet.grid_format(expected)
+
+    assert_equal "0.0..0.0.000\n....0.000..0\n..000.0...0.",
+    @encrypt.grid_format(array)
+  end
+
+  def test_it_can_format_80_character_limit
+    @encrypt.translate("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    expected = "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n................................................................................\n................................................................................\n\n\n"
+    assert_equal expected, @encrypt.character_limit
   end
 end
