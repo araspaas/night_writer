@@ -52,7 +52,6 @@ class EncryptTest < Minitest::Test
 
   def test_it_can_encrypt_file
     skip
-    @encrypt.translate("austin")
     assert_equal [], @encrypt.encrypt_file
   end
 
@@ -72,5 +71,11 @@ class EncryptTest < Minitest::Test
 
     assert_equal "0.0..0.0.000\n....0.000..0\n..000.0...0.",
     @encrypt.grid_format(array)
+  end
+
+  def test_it_can_format_80_character_limit
+    @encrypt.translate("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    expected = "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n................................................................................\n................................................................................\n\n\n"
+    assert_equal expected, @encrypt.character_limit
   end
 end
