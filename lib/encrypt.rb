@@ -1,4 +1,4 @@
-require_relative 'night_writer'
+require_relative 'file_input_output'
 require_relative 'alphabet_hash'
 
 class Encrypt
@@ -8,7 +8,7 @@ class Encrypt
               :line1,
               :line2,
               :line3,
-              :night_writer,
+              :file_input_output,
               :all_lines
 
   def initialize
@@ -16,15 +16,15 @@ class Encrypt
     @line1 = []
     @line2 = []
     @line3 = []
-    @night_writer = NightWriter.new
+    # @all_lines = []
+    @file_input_output = FileInputOutput.new
   end
 
-  # def encrypt_file
-  #   english = @night_writer.read.chomp
-  #   binding.pry
-  #   braille = translate(english)
-  #   @night_writer.write(braille)
-  # end
+  def encrypt_file
+    english = @file_input_output.read.chomp
+    braille = translate(english)
+    @file_input_output.write(braille)
+  end
 
   def translate(letter)
     letters = letter.chars
@@ -44,10 +44,24 @@ class Encrypt
   end
 
   def format_lines
-    line_1_as_string = line1.join('')
-    line_2_as_string = line2.join('')
-    line_3_as_string = line3.join('')
+    line_1_as_string = @line1.join('')
+    line_2_as_string = @line2.join('')
+    line_3_as_string = @line3.join('')
     @all_lines = [line_1_as_string, line_2_as_string, line_3_as_string]
+    if line_1_as_string.length > 80
+      character_limit
+    else
+      @all_lines.join("\n")
+    end
+  end
+
+  def character_limit
+    over_80_limit = []
+    @all_lines.map do |line|
+      line[0..79]
+      over_80_limit << line[80..-1]
+    end
+    @all_lines += over_80_limit
     @all_lines.join("\n")
   end
 end
