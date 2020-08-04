@@ -16,7 +16,6 @@ class Encrypt
     @line1 = []
     @line2 = []
     @line3 = []
-    # @all_lines = []
     @file_input_output = FileInputOutput.new
   end
 
@@ -34,8 +33,8 @@ class Encrypt
     grid_format(arrays)
   end
 
-  def grid_format(arrays)
-    arrays.map do |array|
+  def grid_format(braille_array)
+    braille_array.map do |array|
       @line1 << array[0]
       @line2 << array[1]
       @line3 << array[2]
