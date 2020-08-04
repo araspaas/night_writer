@@ -50,10 +50,10 @@ class EncryptTest < Minitest::Test
     assert_equal expected, @encrypt.alphabet
   end
 
-  def test_it_can_encrypt_file
-    skip
-    assert_equal [], @encrypt.encrypt_file
-  end
+  # def test_it_can_encrypt_file
+  #   skip
+  #   assert_equal [], @encrypt.encrypt_file
+  # end
 
   def test_it_can_translate
     assert_equal "0.\n..\n..",
