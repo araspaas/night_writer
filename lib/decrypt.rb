@@ -27,12 +27,8 @@ class Decrypt
 
   def decrypt_file
     braille = @file_input_output.read.chomp
-    english = decrypt_to_english(braille)
+    english = parse_braille_lines(braille)
     @file_input_output.write(english)
-  end
-
-  def decrypt_to_english(input)
-    parse_braille_lines(input)
   end
 
   def parse_braille_lines(input)
