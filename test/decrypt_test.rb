@@ -51,11 +51,11 @@ class DecryptTest < Minitest::Test
     assert_equal expected, @decrypt.alphabet.invert
   end
 
-  def test_it_can_decrypt
-    skip
-    # I feel like i can't test this.
-    # maybe a mock or stub could be used
-  end
+  # def test_it_can_decrypt
+  #   skip
+  #   # I feel like i can't test this.
+  #   # maybe a mock or stub could be used
+  # end
 
   def test_it_can_split_lines
     expected1 = "0.0.0.0.0....00.0.0.00..0."
@@ -79,7 +79,7 @@ class DecryptTest < Minitest::Test
     @decrypt.parse_braille_lines(braille)
     assert_equal expected, @decrypt.braille_letters
   end
-
+  
   def test_translate_to_english
     braille = "0.0.0.0.0....00.0.0.00..0.\n00.00.0..0..00.0000..0..00\n....0.0.0....00.0.0..."
     @decrypt.parse_braille_lines(braille)
